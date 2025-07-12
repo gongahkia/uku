@@ -2,7 +2,9 @@
 
 # `Uku`
 
-...
+Unified CLI tool for aggregating, analyzing, and visualizing [open-source](https://en.wikipedia.org/wiki/Open-source_software) contributions *(streaks, badges, issues)* across [GitHub](https://github.com/), [GitLab](https://about.gitlab.com/), and [Bitbucket](https://bitbucket.org/product/).
+
+Made mostly to practise [the stack](#stack).
 
 ## Stack
 
@@ -10,7 +12,6 @@
 * *Auth*: [PAT](https://en.wikipedia.org/wiki/Personal_access_token)
 * *API*: [GitHub API](https://docs.github.com/en/rest), [GitLab API](https://docs.gitlab.com/api/rest/), [Bitbucket API](https://www.postman.com/api-evangelist/bitbucket/documentation/2aojru2/bitbucket)
 * *Package*: [Docker](https://www.docker.com/)
-* *Test*: [Rust Unit Tests](https://doc.rust-lang.org/rust-by-example/testing/unit_testing.html)
 
 ## Usage
 
@@ -42,11 +43,91 @@ bitbucket_token = "XXX"
 | `cargo test` | Run all unit tests |
 | `cargo test --test <test_file_name>` | Run specific test files |
 
+4. Optionally build `Uku` as a [Docker Image](./Dockerfile) by running the following.
+
+```console
+$ docker build -t uku .
+```
 
 ## Architecture
 
 ```mermaid
+flowchart TD
+    subgraph User Environment
+        CLI[User CLI]
+        ConfigFile[config/config.toml]
+        SetupScript[scripts/setup.sh]
+    end
 
+    subgraph Docker["Docker Container (optional)"]
+        DockerApp[uku App]
+    end
+
+    subgraph App["uku Application (Rust)"]
+        Main[src/main.rs]
+        Auth[src/auth.rs]
+        Utils[src/utils.rs]
+        DataProcessing[src/data_processing.rs]
+        Visualization[src/visualization.rs]
+        Suggestions[src/suggestions.rs]
+        subgraph API
+            Github[src/api/github.rs]
+            Gitlab[src/api/gitlab.rs]
+            Bitbucket[src/api/bitbucket.rs]
+        end
+        Tests[tests/]
+    end
+
+    subgraph External["External Services"]
+        GitHubAPI[GitHub API]
+        GitLabAPI[GitLab API]
+        BitbucketAPI[Bitbucket API]
+    end
+
+    CLI -->|reads| ConfigFile
+    CLI -->|runs| SetupScript
+    SetupScript -->|builds/runs| Main
+    DockerApp -->|runs| SetupScript
+    DockerApp -->|mounts| ConfigFile
+
+    Main --> Auth
+    Main --> API
+    Main --> DataProcessing
+    Main --> Visualization
+    Main --> Suggestions
+    Main --> Utils
+
+    Auth -->|loads tokens| ConfigFile
+    Auth --> Main
+
+    API --> Github
+    API --> Gitlab
+    API --> Bitbucket
+
+    Github -->|uses token| Auth
+    Gitlab -->|uses token| Auth
+    Bitbucket -->|uses token| Auth
+
+    Github -->|REST calls| GitHubAPI
+    Gitlab -->|REST calls| GitLabAPI
+    Bitbucket -->|REST calls| BitbucketAPI
+
+    Github --> DataProcessing
+    Gitlab --> DataProcessing
+    Bitbucket --> DataProcessing
+
+    DataProcessing --> Visualization
+    DataProcessing --> Suggestions
+
+    Suggestions --> Main
+    Visualization --> Main
+
+    Tests -.-> Main
+    Tests -.-> Auth
+    Tests -.-> API
+    Tests -.-> DataProcessing
+    Tests -.-> Visualization
+    Tests -.-> Suggestions
 ```
 
 ## Reference
