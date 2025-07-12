@@ -9,6 +9,8 @@
 * *Script*: [Rust]()
 * *Auth*: []()
 * *API*: []()
+* *Package*: [Docker]()
+* *Tests*: []()
 
 ## Usage
 
