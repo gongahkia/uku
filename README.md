@@ -7,7 +7,7 @@
 ## Stack
 
 * *Script*: [Rust](https://www.rust-lang.org/)
-* *Auth*: []()
+* *Auth*: [PAT](https://en.wikipedia.org/wiki/Personal_access_token)
 * *API*: [GitHub API](https://docs.github.com/en/rest), [GitLab API](https://docs.gitlab.com/api/rest/), [Bitbucket API](https://www.postman.com/api-evangelist/bitbucket/documentation/2aojru2/bitbucket)
 * *Package*: [Docker](https://www.docker.com/)
 * *Test*: [Rust Unit Tests](https://doc.rust-lang.org/rust-by-example/testing/unit_testing.html)
