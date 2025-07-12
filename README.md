@@ -22,7 +22,15 @@ The below instructions are for running `Uku` on your client machine.
 $ git clone https://github.com/gongahkia/uku && cd uku && chmod +x scripts/setup.sh
 ```
 
-2. Then run any of the following.
+2. Place your [Github](), [Gitlab]() and [Bitbucket]() tokens within `config/config.toml`.
+
+```toml
+github_token = "XXX"
+gitlab_token = "XXX"
+bitbucket_token = "XXX"
+```
+
+3. Then run any of the following.
 
 | Command | Purpose |
 | :--- | :--- |
