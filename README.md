@@ -6,11 +6,11 @@
 
 ## Stack
 
-* *Script*: [Rust]()
+* *Script*: [Rust](https://www.rust-lang.org/)
 * *Auth*: []()
-* *API*: []()
-* *Package*: [Docker]()
-* *Tests*: []()
+* *API*: [GitHub API](https://docs.github.com/en/rest), [GitLab API](https://docs.gitlab.com/api/rest/), [Bitbucket API](https://www.postman.com/api-evangelist/bitbucket/documentation/2aojru2/bitbucket)
+* *Package*: [Docker](https://www.docker.com/)
+* *Test*: [Rust Unit Tests](https://doc.rust-lang.org/rust-by-example/testing/unit_testing.html)
 
 ## Usage
 
@@ -22,7 +22,7 @@ The below instructions are for running `Uku` on your client machine.
 $ git clone https://github.com/gongahkia/uku && cd uku && chmod +x scripts/setup.sh
 ```
 
-2. Place your [Github](), [Gitlab]() and [Bitbucket]() tokens within `config/config.toml`.
+2. Place your [GitHub](), [GitLab]() and [Bitbucket]() tokens within `config/config.toml`.
 
 ```toml
 github_token = "XXX"
