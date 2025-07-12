@@ -34,10 +34,14 @@ bitbucket_token = "XXX"
 
 | Command | Purpose |
 | :--- | :--- |
-| `` | |
-| `` | |
-| `` | |
-| `` | |
+| `./scripts/setup.sh --github --show-streaks` | Show GitHub contributions |
+| `./scripts/setup.sh --gitlab --show-badges` | Show GitLab contributions |
+| `./scripts/setup.sh --bitbucket --show-streaks` | Show Bitbucket contributions |
+| `./scripts/setup.sh --github --gitlab --bitbucket` | Aggregate all platform contributions |
+| `./scripts/setup.sh suggest-issues` | List open issues |
+| `cargo test` | Run all unit tests |
+| `cargo test --test <test_file_name>` | Run specific test files |
+
 
 ## Architecture
 
