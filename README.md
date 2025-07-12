@@ -19,7 +19,7 @@ The below instructions are for running `Uku` on your client machine.
 1. Execute the below.
 
 ```console
-$ git clone https://github.com/gongahkia/uku && cd uku && chmod +x bin/*
+$ git clone https://github.com/gongahkia/uku && cd uku && chmod +x scripts/setup.sh
 ```
 
 2. Then run any of the following.
