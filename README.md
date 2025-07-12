@@ -33,4 +33,4 @@ $ git clone https://github.com/gongahkia/uku && cd uku && chmod +x bin/*
 
 The name `Uku` is in reference to [Ukuleleman](https://space-dandy.fandom.com/wiki/Ukuleleman), an alien who freezes people into smiling statues with his ukulele. Ukuleleman first makes an appearance in the episode [There's Music in the Darkness, Baby](https://space-dandy.fandom.com/wiki/There%27s_Music_in_the_Darkness,_Baby) of the anime [Space Dandy](https://space-dandy.fandom.com/wiki/Space_Dandy_(anime)).
 
-![](./asset/logo/ukuleleman.png)
+![](./asset/logo/ukuleleman.jpg)
