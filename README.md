@@ -1,4 +1,5 @@
 [![](https://img.shields.io/badge/uku_1.0.0-passing-green)](https://github.com/gongahkia/uku/releases/tag/1.0.0)
+[![](https://img.shields.io/badge/uku_2.0.0-passing-ligh_green)](https://github.com/gongahkia/uku/releases/tag/2.0.0)
 
 # `Uku`
 
@@ -8,18 +9,23 @@ Made mostly to practise [the stack](#stack).
 
 ## Stack
 
+* *Frontend*: 
+* *Backend*: 
+* *DB*: 
 * *Script*: [Rust](https://www.rust-lang.org/), [Bash](https://www.gnu.org/software/bash/)
 * *Auth*: [PAT](https://en.wikipedia.org/wiki/Personal_access_token)
 * *API*: [GitHub API](https://docs.github.com/en/rest), [GitLab API](https://docs.gitlab.com/api/rest/), [Bitbucket API](https://www.postman.com/api-evangelist/bitbucket/documentation/2aojru2/bitbucket)
 * *Package*: [Docker](https://www.docker.com/)
 
+## Screenshot
+
+![]()
+![]()
+![]()
+
 ## Usage
 
 The below instructions are for running `Uku` on your client machine.
-
-### Web App
-
-...
 
 ### CLI
 
@@ -55,7 +61,13 @@ bitbucket_token = "XXX"
 $ docker build -t uku .
 ```
 
+### Web App
+
+...
+
 ## Architecture
+
+### CLI
 
 ```mermaid
 flowchart TD
@@ -134,6 +146,12 @@ flowchart TD
     Tests -.-> DataProcessing
     Tests -.-> Visualization
     Tests -.-> Suggestions
+```
+
+### Web App
+
+```mermaid
+...
 ```
 
 ## Reference
