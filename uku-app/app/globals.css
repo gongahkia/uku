@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
+
 @layer base {
   :root {
     --background: 0 0% 100%;
@@ -51,10 +52,10 @@
 
 @layer base {
   * {
-    @apply border-border;
+    @reference border-border;
   }
   body {
-    @apply bg-background text-foreground;
+    @reference bg-background text-foreground;
   }
 }
 
@@ -65,15 +66,15 @@
 }
 
 ::-webkit-scrollbar-track {
-  @apply bg-muted;
+  @reference bg-muted;
 }
 
 ::-webkit-scrollbar-thumb {
-  @apply bg-muted-foreground/30 rounded-full;
+  @reference bg-muted-foreground/30 rounded-full;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  @apply bg-muted-foreground/50;
+  @reference bg-muted-foreground/50;
 }
 
 /* Line clamp utility */
@@ -94,13 +95,13 @@
 /* Mobile-first responsive utilities */
 @media (max-width: 640px) {
   .container {
-    @apply px-4;
+    @reference px-4;
   }
 }
 
 /* Focus styles for accessibility */
 .focus-visible:focus-visible {
-  @apply outline-2 outline-offset-2 outline-ring;
+  @reference outline-2 outline-offset-2 outline-ring;
 }
 
 /* Animation for contribution graph */

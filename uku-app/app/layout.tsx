@@ -12,7 +12,11 @@ export const metadata: Metadata = {
   description: "Track and visualize your open-source contributions across GitHub, GitLab, and Bitbucket",
   keywords: ["open-source", "contributions", "github", "gitlab", "bitbucket", "developer", "portfolio"],
   authors: [{ name: "Gabriel Ong" }],
-  viewport: "width=device-width, initial-scale=1",
+}
+
+export const viewport = {
+  width: "device-width",
+  initialScale: 1,
 }
 
 export default function RootLayout({
