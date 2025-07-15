@@ -1,3 +1,8 @@
+# TODO
+
+* Continue debugging style issues
+* Reference original style documentation for tailwind and postcss and others as needed
+
 [![](https://img.shields.io/badge/uku_1.0.0-passing-green)](https://github.com/gongahkia/uku/releases/tag/1.0.0)
 [![](https://img.shields.io/badge/uku_2.0.0-passing-ligh_green)](https://github.com/gongahkia/uku/releases/tag/2.0.0)
 
@@ -22,6 +27,8 @@ Made mostly to practise [the stack](#stack).
 ![]()
 ![]()
 ![]()
+
+...
 
 ## Usage
 
