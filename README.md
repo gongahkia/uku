@@ -35,7 +35,7 @@ The below instructions are for running `Uku` on your client machine.
 $ git clone https://github.com/gongahkia/uku && cd uku/cli && chmod +x scripts/setup.sh
 ```
 
-2. Place your [GitHub](), [GitLab]() and [Bitbucket]() tokens within `config/config.toml`.
+2. Place your [GitHub](), [GitLab]() and [Bitbucket]() tokens within `./cli/config/config.toml`.
 
 ```toml
 github_token = "XXX"
@@ -62,6 +62,24 @@ $ docker build -t uku .
 ```
 
 ### Web App
+
+1. Execute the below.
+
+```console
+$ git clone https://github.com/gongahkia/uku && cd uku/uku-app && npm i
+```
+
+2. Place your [GitHub](), [GitLab]() and [Bitbucket]() tokens within `./uku-app/.env.local`.
+
+```env
+NEXT_PUBLIC_API_URL=http://localhost:3001
+NEXT_PUBLIC_OAUTH_GITHUB_CLIENT_ID=XXX
+NEXT_PUBLIC_OAUTH_GITLAB_CLIENT_ID=XXX
+NEXT_PUBLIC_OAUTH_BITBUCKET_CLIENT_ID=XXX
+
+NEXT_PUBLIC_APP_NAME=Uku
+NEXT_PUBLIC_APP_DESCRIPTION="Unified Open-Source Contribution Aggregator"
+```
 
 ...
 
