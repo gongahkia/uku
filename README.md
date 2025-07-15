@@ -81,7 +81,11 @@ NEXT_PUBLIC_APP_NAME=Uku
 NEXT_PUBLIC_APP_DESCRIPTION="Unified Open-Source Contribution Aggregator"
 ```
 
-...
+3. Then build `Uku` by running the below.
+
+```console
+$ npm run dev
+```
 
 ## Architecture
 
