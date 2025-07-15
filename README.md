@@ -2,7 +2,7 @@
 
 # `Uku`
 
-Unified CLI tool for aggregating, analyzing, and visualizing [open-source](https://en.wikipedia.org/wiki/Open-source_software) contributions *(streaks, badges, issues)* across [GitHub](https://github.com/), [GitLab](https://about.gitlab.com/), and [Bitbucket](https://bitbucket.org/product/).
+Unified [CLI](./cli/) tool and [Web App](uku-app) for aggregating, analyzing, and visualizing [open-source](https://en.wikipedia.org/wiki/Open-source_software) contributions *(streaks, badges, issues)* across [GitHub](https://github.com/), [GitLab](https://about.gitlab.com/), and [Bitbucket](https://bitbucket.org/product/).
 
 Made mostly to practise [the stack](#stack).
 
@@ -17,10 +17,16 @@ Made mostly to practise [the stack](#stack).
 
 The below instructions are for running `Uku` on your client machine.
 
+### Web App
+
+...
+
+### CLI
+
 1. Execute the below.
 
 ```console
-$ git clone https://github.com/gongahkia/uku && cd uku && chmod +x scripts/setup.sh
+$ git clone https://github.com/gongahkia/uku && cd uku/cli && chmod +x scripts/setup.sh
 ```
 
 2. Place your [GitHub](), [GitLab]() and [Bitbucket]() tokens within `config/config.toml`.
