@@ -15,9 +15,9 @@ Made mostly to practise [the stack](#stack).
 ## Stack
 
 * *Script*: [Rust](https://www.rust-lang.org/), [Bash](https://www.gnu.org/software/bash/)
-* *Frontend*: 
-* *Backend*: 
-* *DB*: 
+* *Frontend*: [React](), [Next.js](), [TypeScript]()
+* *Backend*: [Node.js](https://nodejs.org/en), [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
+* *DB*: [Firebase Realtime Database](https://firebase.google.com/docs/database)
 * *Auth*: [PAT](https://en.wikipedia.org/wiki/Personal_access_token)
 * *API*: [GitHub API](https://docs.github.com/en/rest), [GitLab API](https://docs.gitlab.com/api/rest/), [Bitbucket API](https://www.postman.com/api-evangelist/bitbucket/documentation/2aojru2/bitbucket)
 * *Package*: [Docker](https://www.docker.com/)

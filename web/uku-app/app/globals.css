@@ -2,7 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-
 @layer base {
   :root {
     --background: 0 0% 100%;
@@ -25,6 +24,11 @@
     --input: 214.3 31.8% 91.4%;
     --ring: 221.2 83.2% 53.3%;
     --radius: 0.75rem;
+    --chart-1: 12 76% 61%;
+    --chart-2: 173 58% 39%;
+    --chart-3: 197 37% 24%;
+    --chart-4: 43 74% 66%;
+    --chart-5: 27 87% 67%;
   }
 
   .dark {
@@ -47,68 +51,172 @@
     --border: 217.2 32.6% 17.5%;
     --input: 217.2 32.6% 17.5%;
     --ring: 224.3 76.3% 94.1%;
+    --chart-1: 220 70% 50%;
+    --chart-2: 160 60% 45%;
+    --chart-3: 30 80% 55%;
+    --chart-4: 280 65% 60%;
+    --chart-5: 340 75% 55%;
   }
 }
 
 @layer base {
   * {
-    @reference border-border;
+    @apply border-border;
   }
+
   body {
-    @reference bg-background text-foreground;
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+
+  /* Improved focus styles for accessibility */
+  *:focus-visible {
+    @apply outline-2 outline-offset-2 outline-ring;
+  }
+
+  /* Remove default button styles */
+  button {
+    @apply focus-visible:outline-none;
+  }
+
+  /* Smooth scrolling */
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Better text rendering */
+  body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
   }
 }
 
-/* Custom scrollbar */
-::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
-}
+/* Custom scrollbar styles */
+@layer utilities {
+  /* Webkit browsers (Chrome, Safari, Edge) */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
 
-::-webkit-scrollbar-track {
-  @reference bg-muted;
-}
+  ::-webkit-scrollbar-track {
+    @apply bg-muted/30;
+    border-radius: 4px;
+  }
 
-::-webkit-scrollbar-thumb {
-  @reference bg-muted-foreground/30 rounded-full;
-}
+  ::-webkit-scrollbar-thumb {
+    @apply bg-muted-foreground/30;
+    border-radius: 4px;
+    transition: background-color 0.2s ease;
+  }
 
-::-webkit-scrollbar-thumb:hover {
-  @reference bg-muted-foreground/50;
-}
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-muted-foreground/50;
+  }
 
-/* Line clamp utility */
-.line-clamp-1 {
-  overflow: hidden;
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 1;
-}
+  ::-webkit-scrollbar-corner {
+    @apply bg-transparent;
+  }
 
-.line-clamp-2 {
-  overflow: hidden;
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
-}
-
-/* Mobile-first responsive utilities */
-@media (max-width: 640px) {
-  .container {
-    @reference px-4;
+  /* Firefox */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: hsl(var(--muted-foreground) / 0.3) hsl(var(--muted) / 0.3);
   }
 }
 
-/* Focus styles for accessibility */
-.focus-visible:focus-visible {
-  @reference outline-2 outline-offset-2 outline-ring;
+/* Line clamp utilities */
+@layer utilities {
+  .line-clamp-1 {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+  }
+
+  .line-clamp-2 {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+  }
+
+  .line-clamp-3 {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+  }
+
+  .line-clamp-4 {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 4;
+  }
 }
 
-/* Animation for contribution graph */
+/* Animation utilities */
+@layer utilities {
+  .animate-fade-in {
+    animation: fadeIn 0.5s ease-in-out;
+  }
+
+  .animate-slide-up {
+    animation: slideUp 0.3s ease-out;
+  }
+
+  .animate-slide-down {
+    animation: slideDown 0.3s ease-out;
+  }
+
+  .animate-scale-in {
+    animation: scaleIn 0.2s ease-out;
+  }
+
+  .animate-pulse-slow {
+    animation: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+}
+
 @keyframes fadeIn {
   from {
     opacity: 0;
-    transform: scale(0.8);
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
   }
   to {
     opacity: 1;
@@ -116,6 +224,253 @@
   }
 }
 
-.contribution-day {
-  animation: fadeIn 0.2s ease-in-out;
+/* Contribution graph specific styles */
+@layer components {
+  .contribution-day {
+    @apply transition-all duration-200 ease-in-out;
+    @apply hover:ring-2 hover:ring-ring hover:ring-offset-1;
+    @apply cursor-pointer;
+  }
+
+  .contribution-day:hover {
+    transform: scale(1.1);
+  }
+
+  .contribution-level-0 {
+    @apply bg-muted border-border;
+  }
+
+  .contribution-level-1 {
+    @apply bg-green-100 border-green-200;
+  }
+
+  .contribution-level-2 {
+    @apply bg-green-200 border-green-300;
+  }
+
+  .contribution-level-3 {
+    @apply bg-green-300 border-green-400;
+  }
+
+  .contribution-level-4 {
+    @apply bg-green-400 border-green-500;
+  }
+
+  .dark .contribution-level-0 {
+    @apply bg-muted border-border;
+  }
+
+  .dark .contribution-level-1 {
+    @apply bg-green-900/50 border-green-800;
+  }
+
+  .dark .contribution-level-2 {
+    @apply bg-green-800/60 border-green-700;
+  }
+
+  .dark .contribution-level-3 {
+    @apply bg-green-700/70 border-green-600;
+  }
+
+  .dark .contribution-level-4 {
+    @apply bg-green-600/80 border-green-500;
+  }
+}
+
+/* Badge and achievement styles */
+@layer components {
+  .badge-earned {
+    @apply bg-gradient-to-r from-yellow-400 to-orange-500;
+    @apply text-white shadow-lg;
+    @apply animate-pulse-slow;
+  }
+
+  .badge-progress {
+    @apply bg-gradient-to-r from-blue-400 to-purple-500;
+    @apply text-white;
+  }
+
+  .progress-bar {
+    @apply bg-gradient-to-r from-primary/20 to-primary;
+    @apply transition-all duration-500 ease-out;
+  }
+}
+
+/* Loading states */
+@layer components {
+  .skeleton {
+    @apply animate-pulse bg-muted rounded;
+  }
+
+  .loading-dots::after {
+    content: "";
+    animation: loadingDots 1.5s infinite;
+  }
+}
+
+@keyframes loadingDots {
+  0%,
+  20% {
+    content: ".";
+  }
+  40% {
+    content: "..";
+  }
+  60%,
+  100% {
+    content: "...";
+  }
+}
+
+/* Mobile-specific optimizations */
+@layer utilities {
+  @media (max-width: 640px) {
+    .container {
+      @apply px-4;
+    }
+
+    .text-responsive {
+      @apply text-sm;
+    }
+
+    .card-mobile {
+      @apply rounded-lg shadow-sm;
+    }
+
+    .grid-mobile {
+      @apply grid-cols-1 gap-4;
+    }
+  }
+
+  @media (min-width: 641px) {
+    .text-responsive {
+      @apply text-base;
+    }
+
+    .card-mobile {
+      @apply rounded-xl shadow-md;
+    }
+  }
+}
+
+/* Print styles */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+
+  body {
+    @apply text-black bg-white;
+  }
+
+  .contribution-day {
+    @apply border border-gray-300;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  :root {
+    --border: 0 0% 20%;
+    --ring: 0 0% 20%;
+  }
+
+  .dark {
+    --border: 0 0% 80%;
+    --ring: 0 0% 80%;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .contribution-day:hover {
+    transform: none;
+  }
+}
+
+/* Focus trap for modals and dialogs */
+@layer utilities {
+  .focus-trap {
+    @apply focus-within:ring-2 focus-within:ring-ring focus-within:ring-offset-2;
+  }
+}
+
+/* Custom selection colors */
+::selection {
+  @apply bg-primary/20 text-primary-foreground;
+}
+
+::-moz-selection {
+  @apply bg-primary/20 text-primary-foreground;
+}
+
+/* Improved button hover states */
+@layer components {
+  .btn-hover-lift {
+    @apply transition-transform duration-200 ease-out;
+  }
+
+  .btn-hover-lift:hover {
+    transform: translateY(-1px);
+  }
+
+  .btn-hover-lift:active {
+    transform: translateY(0);
+  }
+}
+
+/* Glass morphism effect for cards */
+@layer components {
+  .glass {
+    @apply bg-background/80 backdrop-blur-md border border-border/50;
+    @apply shadow-lg shadow-black/5;
+  }
+
+  .dark .glass {
+    @apply shadow-black/20;
+  }
+}
+
+/* Gradient text utility */
+@layer utilities {
+  .gradient-text {
+    @apply bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent;
+  }
+}
+
+/* Status indicators */
+@layer components {
+  .status-online {
+    @apply bg-green-500 animate-pulse;
+  }
+
+  .status-offline {
+    @apply bg-gray-400;
+  }
+
+  .status-away {
+    @apply bg-yellow-500;
+  }
+
+  .status-busy {
+    @apply bg-red-500;
+  }
+}
+
+/* Tooltip improvements */
+@layer components {
+  .tooltip {
+    @apply px-2 py-1 text-xs bg-popover text-popover-foreground;
+    @apply border border-border rounded-md shadow-md;
+    @apply animate-fade-in;
+  }
 }
