@@ -8,7 +8,7 @@
 
 # `Uku`
 
-Unified [CLI](./cli/) tool and [Web App](uku-app) for aggregating, analyzing, and visualizing [open-source](https://en.wikipedia.org/wiki/Open-source_software) contributions *(streaks, badges, issues)* across [GitHub](https://github.com/), [GitLab](https://about.gitlab.com/), and [Bitbucket](https://bitbucket.org/product/).
+Unified [CLI](./cli/) tool and [Web App](./web/uku-app) for aggregating, analyzing, and visualizing [open-source](https://en.wikipedia.org/wiki/Open-source_software) contributions *(streaks, badges, issues)* across [GitHub](https://github.com/), [GitLab](https://about.gitlab.com/), and [Bitbucket](https://bitbucket.org/product/).
 
 Made mostly to practise [the stack](#stack).
 
@@ -73,10 +73,10 @@ $ docker build -t uku .
 1. Execute the below.
 
 ```console
-$ git clone https://github.com/gongahkia/uku && cd uku/uku-app && npm i
+$ git clone https://github.com/gongahkia/uku && cd uku/web/uku-app && npm i
 ```
 
-2. Place your [GitHub](), [GitLab]() and [Bitbucket]() tokens within `./uku-app/.env.local`.
+2. Place your [GitHub](), [GitLab]() and [Bitbucket]() tokens within `./web/uku-app/.env.local`.
 
 ```env
 NEXT_PUBLIC_API_URL=http://localhost:3001
