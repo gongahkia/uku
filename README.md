@@ -1,8 +1,3 @@
-# TODO
-
-* Continue debugging style issues
-* Reference original style documentation for tailwind and postcss and others as needed
-
 [![](https://img.shields.io/badge/uku_1.0.0-passing-green)](https://github.com/gongahkia/uku/releases/tag/1.0.0)
 [![](https://img.shields.io/badge/uku_2.0.0-passing-ligh_green)](https://github.com/gongahkia/uku/releases/tag/2.0.0)
 
@@ -21,14 +16,6 @@ Made mostly to practise [the stack](#stack).
 * *Auth*: [PAT](https://en.wikipedia.org/wiki/Personal_access_token)
 * *API*: [GitHub API](https://docs.github.com/en/rest), [GitLab API](https://docs.gitlab.com/api/rest/), [Bitbucket API](https://www.postman.com/api-evangelist/bitbucket/documentation/2aojru2/bitbucket)
 * *Package*: [Docker](https://www.docker.com/)
-
-## Screenshot
-
-![]()
-![]()
-![]()
-
-...
 
 ## Usage
 
@@ -91,7 +78,8 @@ NEXT_PUBLIC_APP_DESCRIPTION="Unified Open-Source Contribution Aggregator"
 3. Then build `Uku` by running the below.
 
 ```console
-$ npm run dev
+$ cd web
+$ docker build -t uku-web . && docker run -p 3000:3000 uku-web
 ```
 
 ## Architecture
@@ -180,7 +168,89 @@ flowchart TD
 ### Web App
 
 ```mermaid
-...
+flowchart TD
+    %% ===== USER ENVIRONMENT =====
+    subgraph User
+        Browser[Frontend App Next.js]
+        UserPrefs[User Preferences]
+    end
+
+    %% ===== FRONTEND =====
+    subgraph Frontend["Vercel Deployment (Next.js / TailwindCSS)"]
+        Layout[layout.tsx / globals.css]
+        Pages["App Pages (app/)"]
+        Components["Shared UI Components (components/)"]
+        ThemeProvider
+        BadgesList
+        ContributionGraph
+        IssuesList
+        Toast[Notifications Sonner]
+        APIClient["Client Fetch (lib/api.ts)"]
+    end
+
+    %% ===== BACKEND =====
+    subgraph Backend["Heroku Deployment (Express Server)"]
+        IndexJS[index.js / server entry]
+        API["API Routes (/api/...)"]
+        ContributionsAPI[GET /api/contributions]
+        IssuesAPI[GET /api/issues]
+        Services["Service Layer (/services)"]
+        GitHubSvc[GitHub Service]
+        GitLabSvc[GitLab Service]
+        BitbucketSvc[Bitbucket Service]
+    end
+
+    %% ===== DATABASE & AUTH =====
+    subgraph Firebase["Firebase Services"]
+        Firestore[Firestore DB]
+        FirebaseAuth[(🛡️ Firebase Auth)]
+    end
+
+    %% ===== EXTERNAL SOURCES =====
+    subgraph External["Open Source Platform APIs"]
+        GitHubAPI[(GitHub API)]
+        GitLabAPI[(GitLab API)]
+        BitbucketAPI[(Bitbucket API)]
+    end
+
+    %% ===== DATA FLOW =====
+    Browser -->|renders| Frontend
+    Pages --> Layout
+    Pages --> Components
+    Components --> ThemeProvider
+    Components --> ContributionGraph & BadgesList & IssuesList
+    ThemeProvider --> Layout
+    
+    Browser -->|Fetch user data| APIClient
+    APIClient --> ContributionsAPI
+    APIClient --> IssuesAPI
+
+    ContributionsAPI --> GitHubSvc
+    ContributionsAPI --> GitLabSvc
+    ContributionsAPI --> BitbucketSvc
+
+    IssuesAPI --> GitHubSvc
+    IssuesAPI --> GitLabSvc
+    IssuesAPI --> BitbucketSvc
+
+    GitHubSvc -->|uses token| FirebaseAuth
+    GitLabSvc -->|uses token| FirebaseAuth
+    BitbucketSvc -->|uses token| FirebaseAuth
+
+    GitHubSvc -->|calls| GitHubAPI
+    GitLabSvc -->|calls| GitLabAPI
+    BitbucketSvc -->|calls| BitbucketAPI
+
+    ContributionsAPI --> Firestore
+    IssuesAPI --> Firestore
+    Browser -->|reads user state| FirebaseAuth
+    Browser -->|reads badge progress| Firestore
+
+    FirebaseAuth --> UserPrefs
+    Firestore --> UserPrefs
+
+    Toast --> Layout
+    Toast --> Components
 ```
 
 ## Reference
