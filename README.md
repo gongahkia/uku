@@ -10,7 +10,7 @@ Made mostly to practise [the stack](#stack).
 ## Stack
 
 * *Script*: [Rust](https://www.rust-lang.org/), [Bash](https://www.gnu.org/software/bash/)
-* *Frontend*: [React](), [Next.js](), [TypeScript]()
+* *Frontend*: [React](https://react.dev/), [Next.js](https://nextjs.org/), [TypeScript](https://www.typescriptlang.org/)
 * *Backend*: [Node.js](https://nodejs.org/en), [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
 * *DB*: [Firebase Realtime Database](https://firebase.google.com/docs/database)
 * *Auth*: [PAT](https://en.wikipedia.org/wiki/Personal_access_token)
@@ -29,7 +29,7 @@ The below instructions are for running `Uku` on your client machine.
 $ git clone https://github.com/gongahkia/uku && cd uku/cli && chmod +x scripts/setup.sh
 ```
 
-2. Place your [GitHub](), [GitLab]() and [Bitbucket]() tokens within `./cli/config/config.toml`.
+2. Place your [GitHub](https://github.com/), [GitLab](https://gitlab.com/) and [Bitbucket](https://bitbucket.org/product/) tokens within `./cli/config/config.toml`.
 
 ```toml
 github_token = "XXX"
@@ -63,7 +63,7 @@ $ docker build -t uku .
 $ git clone https://github.com/gongahkia/uku && cd uku/web/uku-app && npm i
 ```
 
-2. Place your [GitHub](), [GitLab]() and [Bitbucket]() tokens within `./web/uku-app/.env.local`.
+2. Place your [GitHub](https://github.com/), [GitLab](https://gitlab.com/) and [Bitbucket](https://bitbucket.org/product/) tokens within `./web/uku-app/.env.local`.
 
 ```env
 NEXT_PUBLIC_API_URL=http://localhost:3001
@@ -203,7 +203,7 @@ flowchart TD
     %% ===== DATABASE & AUTH =====
     subgraph Firebase["Firebase Services"]
         Firestore[Firestore DB]
-        FirebaseAuth[(🛡️ Firebase Auth)]
+        FirebaseAuth[(Firebase Auth)]
     end
 
     %% ===== EXTERNAL SOURCES =====
